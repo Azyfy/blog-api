@@ -10,7 +10,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const blogadminRouter = require("./routes/blogadmin");
 
+const helmet = require("helmet");
+
 var app = express();
+
+app.use(helmet());
 
 // DB
 const mongoose = require("mongoose");
