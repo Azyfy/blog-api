@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "debug": "DEBUG=blog-api:* npm start"
+    "nodemon": "nodemon ./bin/www",
+    "debug": "DEBUG=blog-api:* npm run nodemon"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
