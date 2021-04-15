@@ -12,12 +12,10 @@ router.get("/", (req, res, next) => {
     res.json(obj);
 });
 
-router.post("/", (req, res, next) => {
-    console.log(req.body)
-    res.json(req.body.text);
-});
+//blogadmin
+router.post("/login", blogadminController.login);
 
-//blogpost route
+//blogpost
 router.get("/posts", blogpostsController.get_posts);
 
 router.post("/posts/new", blogpostsController.create_post);
