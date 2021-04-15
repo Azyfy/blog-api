@@ -9,6 +9,7 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const blogadminRouter = require("./routes/blogadmin");
+const blogRouter = require("./routes/blog");
 
 const helmet = require("helmet");
 
@@ -39,5 +40,6 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/blogadmin", blogadminRouter);
+app.use("/blog", blogRouter);
 
 module.exports = app;
