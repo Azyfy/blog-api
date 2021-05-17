@@ -3,6 +3,8 @@ const Blogpost = require("../models/blogpost");
 
 const bcrypt = require("bcryptjs");
 
+const jwt = require("jsonwebtoken");
+
 const { body, validationResult } = require("express-validator");
 
 exports.login = [
@@ -21,7 +23,14 @@ exports.login = [
       .then(user => {
           //mock login
           if(req.body.password === "12345" && user!=null ) {
-            res.json("Login")
+            const opts = {}
+            opts.expiresIn = 300;  //token expires in 5min
+            const secret = process.env.SECRET_KEY
+            const token = jwt.sign({ user }, secret, opts);
+            return res.status(200).json({
+                message: "Auth Passed",
+                token
+            })
           }
           else {
             res.json("Wrong password or user")
