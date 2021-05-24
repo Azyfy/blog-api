@@ -50,6 +50,6 @@ exports.get_single_post = (req, res, next) => {
 exports.delete_single_post = (req, res, next) => {
 
     Blogpost.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Exercise deleted.'))
+        .then(() => res.json('Post deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
 }
