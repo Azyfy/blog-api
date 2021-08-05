@@ -14,6 +14,7 @@ exports.create_comment = [
     body("blogpost").trim().escape(),
     body("user").trim().escape(),
     body("comment", "Comment cant be empty").trim().isLength({min: 1}).escape(),
+    body("isadmin").isBoolean().escape(),
 
     (req, res, next) => {
 
@@ -22,6 +23,12 @@ exports.create_comment = [
         if(req.body.user == "") {
             req.body.user = "Anonymous";
         }
+        else if (req.body.user == "Admin") {
+            if((req.body.isadmin == "false")) {
+                req.body.user = "Fake Admin";
+            }
+        }
+        
 
         const comment = new Blogcomment(
             {
@@ -42,3 +49,10 @@ exports.create_comment = [
 
     }
 ]
+
+exports.delete_single_comment = (req, res, next) => {
+
+    Blogcomment.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Comment deleted.'))
+        .catch(err => res.status(400).json('Error: ' + err));
+}
