@@ -43,7 +43,7 @@ exports.create_comment = [
         }
         else {
             comment.save()
-                .then(() => res.json('Comment posted'))
+                .then((newComment) => res.json(newComment))
                 .catch(err => res.status(400).json('Error: ' + err));
         }
 
